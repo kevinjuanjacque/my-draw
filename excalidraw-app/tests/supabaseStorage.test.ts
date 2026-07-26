@@ -1,10 +1,9 @@
-import type { SupabaseClient } from "@supabase/supabase-js";
 import { describe, expect, test, vi } from "vitest";
 
-import {
-  createSupabaseStorage,
-  SupabaseStorageError,
-} from "../data/supabaseStorage";
+import { createSupabaseStorage } from "../data/supabaseStorage";
+
+import type { SupabaseClient } from "@supabase/supabase-js";
+import type { SupabaseStorageError } from "../data/supabaseStorage";
 
 describe("Supabase board storage", () => {
   test("returns the single token produced by the read-share RPC", async () => {
