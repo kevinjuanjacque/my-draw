@@ -12,7 +12,10 @@ import type {
 
 import { FILE_UPLOAD_TIMEOUT, WS_SUBTYPES } from "../app_constants";
 import { isSyncableElement } from "../data";
-import { getSupabaseClient } from "../data/supabase";
+import {
+  getSupabaseClient,
+  hasInvalidSupabaseConfiguration,
+} from "../data/supabase";
 
 import type { RealtimeChannel, SupabaseClient } from "@supabase/supabase-js";
 
@@ -144,17 +147,29 @@ class Portal {
     this.collab = collab;
   }
 
+  assertConfiguration() {
+    const supabase = getSupabaseClient();
+    if (supabase) {
+      return supabase;
+    }
+
+    if (hasInvalidSupabaseConfiguration()) {
+      throw new Error(
+        "Live collaboration is unavailable because VITE_SUPABASE_URL or VITE_SUPABASE_PUBLISHABLE_KEY is invalid. Configure a valid HTTPS Supabase project URL and publishable key, then redeploy.",
+      );
+    }
+
+    throw new Error(
+      "Live collaboration is unavailable because Supabase is not configured. Set VITE_SUPABASE_URL and VITE_SUPABASE_PUBLISHABLE_KEY, then redeploy.",
+    );
+  }
+
   async open(
     id: string,
     key: string,
     onEncryptedMessage: (payload: EncryptedRealtimePayload) => void,
   ): Promise<{ isFirstInRoom: boolean }> {
-    const supabase = getSupabaseClient();
-    if (!supabase) {
-      throw new Error(
-        "Collaboration requires VITE_SUPABASE_URL and VITE_SUPABASE_PUBLISHABLE_KEY",
-      );
-    }
+    const supabase = this.assertConfiguration();
 
     this.supabase = supabase;
     this.roomId = id;
@@ -216,11 +231,12 @@ class Portal {
       await this.trackPresence();
       this.syncPresence();
 
-      if (!isFirstInRoom) {
-        await this.sendBroadcast(REALTIME_EVENTS.USER_JOINED, {
-          sessionId: this.sessionId,
-        });
-      }
+      // Presence state may not include peers immediately after subscribing.
+      // Every client therefore announces its arrival, so an already-open peer
+      // always sends an INIT scene even when this client appears to be first.
+      await this.sendBroadcast(REALTIME_EVENTS.USER_JOINED, {
+        sessionId: this.sessionId,
+      });
 
       trackEvent("share", "room joined");
       return { isFirstInRoom };

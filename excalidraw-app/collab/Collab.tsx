@@ -417,6 +417,17 @@ class Collab extends PureComponent<CollabProps, CollabState> {
   startCollaboration = async (
     existingRoomLinkData: null | { roomId: string; roomKey: string },
   ) => {
+    try {
+      this.portal.assertConfiguration();
+    } catch (error: unknown) {
+      this.setErrorDialog(
+        error instanceof Error
+          ? error.message
+          : "Unable to start live collaboration",
+      );
+      return null;
+    }
+
     if (!this.state.username) {
       import("@excalidraw/random-username").then(({ getRandomUsername }) => {
         const username = getRandomUsername();
@@ -428,22 +439,21 @@ class Collab extends PureComponent<CollabProps, CollabState> {
       return null;
     }
 
-    let roomId;
-    let roomKey;
+    let roomId: string;
+    let roomKey: string;
+    let shouldUpdateUrl = false;
 
     if (existingRoomLinkData) {
       ({ roomId, roomKey } = existingRoomLinkData);
     } else {
       ({ roomId, roomKey } = await generateCollaborationLinkData());
-      window.history.pushState(
-        {},
-        APP_NAME,
-        getCollaborationLink({ roomId, roomKey }),
-      );
+      shouldUpdateUrl = true;
     }
 
     // TODO: `ImportedDataState` type here seems abused
     const scenePromise = resolvablePromise<CollaborationScene>();
+    const previousUrl = window.location.href;
+    let didUpdateUrl = false;
 
     this.setIsCollaborating(true);
     LocalData.pauseSave("collaboration");
@@ -456,6 +466,15 @@ class Collab extends PureComponent<CollabProps, CollabState> {
           void this.handleEncryptedBroadcast(payload, scenePromise);
         },
       );
+
+      if (shouldUpdateUrl) {
+        window.history.pushState(
+          {},
+          APP_NAME,
+          getCollaborationLink({ roomId, roomKey }),
+        );
+        didUpdateUrl = true;
+      }
 
       if (existingRoomLinkData) {
         // when joining existing room, don't merge it with current scene data
@@ -497,6 +516,9 @@ class Collab extends PureComponent<CollabProps, CollabState> {
       }
     } catch (error: unknown) {
       console.error(error);
+      if (didUpdateUrl) {
+        window.history.replaceState({}, APP_NAME, previousUrl);
+      }
       this.destroySocketClient();
       this.setErrorDialog(
         error instanceof Error

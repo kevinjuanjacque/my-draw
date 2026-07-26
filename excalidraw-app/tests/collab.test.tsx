@@ -6,7 +6,7 @@ import {
 import { syncInvalidIndices } from "@excalidraw/element";
 import { API } from "@excalidraw/excalidraw/tests/helpers/api";
 import { act, render, waitFor } from "@excalidraw/excalidraw/tests/test-utils";
-import { vi } from "vitest";
+import { afterEach, vi } from "vitest";
 
 import { StoreIncrement } from "@excalidraw/element";
 
@@ -15,6 +15,30 @@ import type { DurableIncrement, EphemeralIncrement } from "@excalidraw/element";
 import ExcalidrawApp from "../App";
 
 const { h } = window;
+
+const supabaseMocks = vi.hoisted(() => {
+  const channel = {
+    on: vi.fn(),
+    subscribe: vi.fn(),
+    track: vi.fn(async () => "ok"),
+    send: vi.fn(async () => "ok"),
+    unsubscribe: vi.fn(async () => "ok"),
+    presenceState: vi.fn(() => ({})),
+  };
+  channel.on.mockImplementation(() => channel);
+  channel.subscribe.mockImplementation((callback: (status: string) => void) => {
+    callback("SUBSCRIBED");
+    return channel;
+  });
+
+  return {
+    channel,
+    client: {
+      channel: vi.fn(() => channel),
+      removeChannel: vi.fn(async () => "ok"),
+    },
+  };
+});
 
 Object.defineProperty(window, "crypto", {
   value: {
@@ -62,25 +86,25 @@ vi.mock("@excalidraw/excalidraw/data/encryption", async () => {
 });
 
 vi.mock("../data/supabase", () => {
-  const channel = {
-    on: vi.fn(),
-    subscribe: (callback: (status: string) => void) => {
-      callback("SUBSCRIBED");
-      return channel;
-    },
-    track: async () => "ok",
-    send: async () => "ok",
-    unsubscribe: async () => "ok",
-    presenceState: () => ({}),
-  };
-  channel.on.mockImplementation(() => channel);
-
   return {
-    getSupabaseClient: () => ({
-      channel: () => channel,
-      removeChannel: async () => "ok",
-    }),
+    getSupabaseClient: () => supabaseMocks.client,
+    hasInvalidSupabaseConfiguration: () => false,
   };
+});
+
+afterEach(() => {
+  window.history.replaceState({}, "", window.location.origin);
+  supabaseMocks.channel.subscribe.mockReset();
+  supabaseMocks.channel.subscribe.mockImplementation(
+    (callback: (status: string) => void) => {
+      callback("SUBSCRIBED");
+      return supabaseMocks.channel;
+    },
+  );
+  supabaseMocks.channel.track.mockResolvedValue("ok");
+  supabaseMocks.channel.send.mockResolvedValue("ok");
+  supabaseMocks.channel.unsubscribe.mockResolvedValue("ok");
+  supabaseMocks.channel.presenceState.mockReturnValue({});
 });
 
 /**
@@ -89,6 +113,52 @@ vi.mock("../data/supabase", () => {
  * i.e. multiplayer history tests could be a good first candidate, as we could test both history stacks simultaneously.
  */
 describe("collaboration", () => {
+  it("announces a new room even when presence has not loaded peers yet", async () => {
+    // Arrange
+    await render(<ExcalidrawApp />);
+
+    // Act
+    await act(() => window.collab.startCollaboration(null));
+
+    // Assert
+    expect(supabaseMocks.channel.send).toHaveBeenCalledWith(
+      expect.objectContaining({
+        event: "room-user-joined",
+        payload: expect.objectContaining({
+          sessionId: expect.stringMatching(/^session_[a-f0-9]{32}$/),
+        }),
+      }),
+    );
+  });
+
+  it("preserves the URL when opening a new room cannot subscribe", async () => {
+    // Arrange
+    const consoleErrorSpy = vi
+      .spyOn(console, "error")
+      .mockImplementation(() => undefined);
+    supabaseMocks.channel.subscribe.mockImplementation(
+      (callback: (status: string) => void) => {
+        callback("CHANNEL_ERROR");
+        return supabaseMocks.channel;
+      },
+    );
+    const originalUrl = window.location.href;
+    await render(<ExcalidrawApp />);
+
+    // Act
+    await act(() => window.collab.startCollaboration(null));
+
+    // Assert
+    expect(window.location.href).toBe(originalUrl);
+    expect(window.collab.isCollaborating()).toBe(false);
+    expect(consoleErrorSpy).toHaveBeenCalledWith(
+      expect.objectContaining({
+        message: "Unable to subscribe to the collaboration room: CHANNEL_ERROR",
+      }),
+    );
+    consoleErrorSpy.mockRestore();
+  });
+
   it("should emit two ephemeral increments even though updates get batched", async () => {
     const durableIncrements: DurableIncrement[] = [];
     const ephemeralIncrements: EphemeralIncrement[] = [];
