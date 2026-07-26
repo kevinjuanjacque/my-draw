@@ -15,6 +15,36 @@ import type {
 const CLOUD_NAME = import.meta.env.VITE_APP_CLOUDINARY_CLOUD_NAME;
 const UPLOAD_PRESET = import.meta.env.VITE_APP_CLOUDINARY_UPLOAD_PRESET;
 
+interface CloudinaryConfiguration {
+  cloudName: string;
+  uploadPreset: string;
+}
+
+export class CloudinaryConfigurationError extends Error {
+  constructor() {
+    super(
+      "Cloudinary is not configured. Set VITE_APP_CLOUDINARY_CLOUD_NAME and VITE_APP_CLOUDINARY_UPLOAD_PRESET.",
+    );
+    this.name = "CloudinaryConfigurationError";
+  }
+}
+
+const isConfiguredValue = (value: unknown): value is string =>
+  typeof value === "string" &&
+  value.trim().length > 0 &&
+  value.trim() !== "undefined";
+
+const getCloudinaryConfiguration = (): CloudinaryConfiguration => {
+  if (!isConfiguredValue(CLOUD_NAME) || !isConfiguredValue(UPLOAD_PRESET)) {
+    throw new CloudinaryConfigurationError();
+  }
+
+  return {
+    cloudName: CLOUD_NAME.trim(),
+    uploadPreset: UPLOAD_PRESET.trim(),
+  };
+};
+
 const publicId = (prefix: string, id: FileId) =>
   `${prefix.replace(/^\/+/, "")}/${id}`;
 
@@ -26,26 +56,29 @@ const isCloudinaryUploadResponse = (
   "secure_url" in payload &&
   typeof payload.secure_url === "string";
 
-const resourceUrl = (prefix: string, id: FileId) =>
-  `https://res.cloudinary.com/${CLOUD_NAME}/raw/upload/${publicId(prefix, id)}`;
+const resourceUrl = (
+  cloudName: CloudinaryConfiguration["cloudName"],
+  prefix: string,
+  id: FileId,
+) =>
+  `https://res.cloudinary.com/${cloudName}/raw/upload/${publicId(prefix, id)}`;
 
-export const isCloudinaryConfigured = () => !!CLOUD_NAME && !!UPLOAD_PRESET;
+export const isCloudinaryConfigured = () =>
+  isConfiguredValue(CLOUD_NAME) && isConfiguredValue(UPLOAD_PRESET);
 
 export const uploadImageToCloudinary = async ({
   dataURL,
 }: {
   dataURL: BinaryFileData["dataURL"];
 }): Promise<BinaryFileData["dataURL"]> => {
-  if (!isCloudinaryConfigured()) {
-    throw new Error("Cloudinary image upload is not configured");
-  }
+  const configuration = getCloudinaryConfiguration();
 
   const formData = new FormData();
   formData.append("file", dataURL);
-  formData.append("upload_preset", UPLOAD_PRESET);
+  formData.append("upload_preset", configuration.uploadPreset);
 
   const response = await fetch(
-    `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`,
+    `https://api.cloudinary.com/v1_1/${configuration.cloudName}/image/upload`,
     { method: "POST", body: formData },
   );
 
@@ -68,6 +101,7 @@ export const saveFilesToCloudinary = async ({
   prefix: string;
   files: { id: FileId; buffer: Uint8Array }[];
 }) => {
+  const configuration = getCloudinaryConfiguration();
   const erroredFiles: FileId[] = [];
   const savedFiles: FileId[] = [];
 
@@ -80,11 +114,11 @@ export const saveFilesToCloudinary = async ({
           new Blob([new Uint8Array(buffer)]),
           publicId(prefix, id),
         );
-        formData.append("upload_preset", UPLOAD_PRESET);
+        formData.append("upload_preset", configuration.uploadPreset);
         formData.append("public_id", publicId(prefix, id));
 
         const response = await fetch(
-          `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/raw/upload`,
+          `https://api.cloudinary.com/v1_1/${configuration.cloudName}/raw/upload`,
           { method: "POST", body: formData },
         );
 
@@ -108,13 +142,16 @@ export const loadFilesFromCloudinary = async (
   decryptionKey: string,
   filesIds: readonly FileId[],
 ) => {
+  const configuration = getCloudinaryConfiguration();
   const loadedFiles: BinaryFileData[] = [];
   const erroredFiles = new Map<FileId, true>();
 
   await Promise.all(
     [...new Set(filesIds)].map(async (id) => {
       try {
-        const response = await fetch(resourceUrl(prefix, id));
+        const response = await fetch(
+          resourceUrl(configuration.cloudName, prefix, id),
+        );
         if (response.status >= 400) {
           erroredFiles.set(id, true);
           return;

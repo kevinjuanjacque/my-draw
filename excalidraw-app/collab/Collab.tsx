@@ -74,6 +74,7 @@ import {
 import { FileStatusStore } from "../data/fileStatusStore";
 import { LocalData } from "../data/LocalData";
 import {
+  CloudinaryConfigurationError,
   loadFilesFromCloudinary,
   saveFilesToCloudinary,
 } from "../data/cloudinary";
@@ -159,11 +160,26 @@ class Collab extends PureComponent<CollabProps, CollabState> {
           throw new AbortError();
         }
 
-        return loadFilesFromCloudinary(
-          `${CLOUD_STORAGE_PREFIXES.collabFiles}/${roomId}`,
-          roomKey,
-          fileIds,
-        );
+        try {
+          return await loadFilesFromCloudinary(
+            `${CLOUD_STORAGE_PREFIXES.collabFiles}/${roomId}`,
+            roomKey,
+            fileIds,
+          );
+        } catch (error: unknown) {
+          if (!(error instanceof CloudinaryConfigurationError)) {
+            throw error;
+          }
+
+          console.error(
+            "Could not load collaboration files from Cloudinary",
+            error,
+          );
+          this.setErrorIndicator(error.message);
+          const erroredFiles = new Map<FileId, true>();
+          fileIds.forEach((id) => erroredFiles.set(id, true));
+          return { loadedFiles: [], erroredFiles };
+        }
       },
       saveFiles: async ({ addedFiles }) => {
         const { roomId, roomKey } = this.portal;
@@ -171,37 +187,55 @@ class Collab extends PureComponent<CollabProps, CollabState> {
           throw new AbortError();
         }
 
-        const { savedFiles, erroredFiles } = await saveFilesToCloudinary({
-          prefix: `${CLOUD_STORAGE_PREFIXES.collabFiles}/${roomId}`,
-          files: await encodeFilesForUpload({
-            files: addedFiles,
-            encryptionKey: roomKey,
-            maxBytes: FILE_UPLOAD_MAX_BYTES,
-          }),
+        const files = await encodeFilesForUpload({
+          files: addedFiles,
+          encryptionKey: roomKey,
+          maxBytes: FILE_UPLOAD_MAX_BYTES,
         });
 
-        return {
-          savedFiles: savedFiles.reduce(
-            (acc: Map<FileId, BinaryFileData>, id) => {
-              const fileData = addedFiles.get(id);
-              if (fileData) {
-                acc.set(id, fileData);
-              }
-              return acc;
-            },
-            new Map(),
-          ),
-          erroredFiles: erroredFiles.reduce(
-            (acc: Map<FileId, BinaryFileData>, id) => {
-              const fileData = addedFiles.get(id);
-              if (fileData) {
-                acc.set(id, fileData);
-              }
-              return acc;
-            },
-            new Map(),
-          ),
-        };
+        try {
+          const { savedFiles, erroredFiles } = await saveFilesToCloudinary({
+            prefix: `${CLOUD_STORAGE_PREFIXES.collabFiles}/${roomId}`,
+            files,
+          });
+
+          return {
+            savedFiles: savedFiles.reduce(
+              (acc: Map<FileId, BinaryFileData>, id) => {
+                const fileData = addedFiles.get(id);
+                if (fileData) {
+                  acc.set(id, fileData);
+                }
+                return acc;
+              },
+              new Map(),
+            ),
+            erroredFiles: erroredFiles.reduce(
+              (acc: Map<FileId, BinaryFileData>, id) => {
+                const fileData = addedFiles.get(id);
+                if (fileData) {
+                  acc.set(id, fileData);
+                }
+                return acc;
+              },
+              new Map(),
+            ),
+          };
+        } catch (error: unknown) {
+          if (!(error instanceof CloudinaryConfigurationError)) {
+            throw error;
+          }
+
+          console.error(
+            "Could not save collaboration files to Cloudinary",
+            error,
+          );
+          this.setErrorIndicator(error.message);
+          return {
+            savedFiles: new Map(),
+            erroredFiles: new Map(addedFiles),
+          };
+        }
       },
     });
     this.excalidrawAPI = props.excalidrawAPI;
