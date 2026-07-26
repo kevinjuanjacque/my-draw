@@ -1,0 +1,538 @@
+- generic [ref=e2]:
+    - banner [ref=e3]:
+        - navigation [ref=e6]:
+            - generic [ref=e7]:
+                - link "Cloudinary Logo" [ref=e10] [cursor=pointer]:
+                    - /url: /
+                    - img "Cloudinary Logo" [ref=e11]
+                - generic [ref=e30]:
+                    - list [ref=e32]:
+                        - listitem [ref=e33]:
+                            - link "Platform":
+                                - /url: "#"
+                        - listitem [ref=e34]:
+                            - link "Solutions":
+                                - /url: "#"
+                        - listitem [ref=e35]:
+                            - link "Developers":
+                                - /url: "#"
+                        - listitem [ref=e36]:
+                            - link "Resources":
+                                - /url: "#"
+                        - listitem [ref=e37]:
+                            - link "Partners":
+                                - /url: "#"
+                        - listitem [ref=e38]:
+                            - link "Pricing" [ref=e39] [cursor=pointer]:
+                                - /url: /pricing
+                    - generic [ref=e40]:
+                        - list [ref=e43]:
+                            - listitem [ref=e44]:
+                                - link "Login" [ref=e45] [cursor=pointer]:
+                                    - /url: https://cloudinary.com/users/login
+                        - generic [ref=e46]:
+                            - link "CONTACT SALES" [ref=e47] [cursor=pointer]:
+                                - /url: /contact
+                            - link "sign up for free" [ref=e48] [cursor=pointer]:
+                                - /url: https://cloudinary.com/users/register_free
+    - main [ref=e51]:
+        - generic [ref=e57]:
+            - generic [ref=e58]:
+                - generic [ref=e59]: IMAGE AND VIDEO API PLATFORM
+                - heading "The World’s Visual Experiences Start Here" [level=1] [ref=e60]
+            - paragraph [ref=e61]: AI-native platform and APIs for automating the entire image and video lifecycle at scale.
+            - generic [ref=e62]:
+                - link "SIGN UP FOR FREE" [ref=e63] [cursor=pointer]:
+                    - /url: https://cloudinary.com/users/register_free
+                - link "CONTACT SALES" [ref=e64] [cursor=pointer]:
+                    - /url: https://cloudinary.com/contact
+            - generic [ref=e65]:
+                - generic [ref=e66]:
+                    - generic [ref=e67]: 3.9M
+                    - text: Developers
+                - generic [ref=e68]:
+                    - generic [ref=e69]: 13K
+                    - generic [ref=e70]: Brands
+                - generic [ref=e71]: Agent-Ready
+        - generic [ref=e111]:
+            - generic [ref=e112]:
+                - heading "Built for Developers, Teams, and Agents" [level=2] [ref=e113]
+                - generic [ref=e116]:
+                    - link [ref=e117] [cursor=pointer]:
+                        - /url: https://cloudinary.com/developers
+                        - generic [ref=e118]:
+                            - heading "Developers" [level=4] [ref=e119]
+                            - paragraph [ref=e120]: Ship faster with powerful media APIs.
+                        - img "Developer" [ref=e124]
+                    - link [ref=e125] [cursor=pointer]:
+                        - /url: https://cloudinary.com/agents
+                        - generic [ref=e126]:
+                            - heading "AI Agents" [level=4] [ref=e127]
+                            - paragraph [ref=e128]: Level up your agents with context-rich media.
+                        - img "AI agents" [ref=e132]
+                        - text: New!
+                    - link [ref=e133] [cursor=pointer]:
+                        - /url: https://cloudinary.com/agents
+                        - generic [ref=e134]:
+                            - heading "Builders" [level=4] [ref=e135]
+                            - paragraph [ref=e136]: Create and experiment with low-code tools and AI.
+                        - img "Builder" [ref=e140]
+                    - link [ref=e141] [cursor=pointer]:
+                        - /url: https://cloudinary.com/solutions/e-commerce-teams
+                        - generic [ref=e142]:
+                            - heading "Commerce Teams" [level=4] [ref=e143]
+                            - paragraph [ref=e144]: Drive conversions with rich, optimized images and video.
+                        - img "Commerce teams" [ref=e148]
+                    - link [ref=e149] [cursor=pointer]:
+                        - /url: https://cloudinary.com/solutions/product-and-engineering-teams
+                        - generic [ref=e150]:
+                            - heading "Product Teams" [level=4] [ref=e151]
+                            - paragraph [ref=e152]: Deliver high-performance visual experiences.
+                        - img "Product teams" [ref=e156]
+                    - link [ref=e157] [cursor=pointer]:
+                        - /url: https://cloudinary.com/products/digital_asset_management
+                        - generic [ref=e158]:
+                            - heading "DAM and Content Teams" [level=4] [ref=e159]
+                            - paragraph [ref=e160]: Maintain control and consistency at scale.
+                        - img "DAM and content teams" [ref=e164]
+                    - link [ref=e165] [cursor=pointer]:
+                        - /url: https://cloudinary.com/solutions/marketing-teams
+                        - generic [ref=e166]:
+                            - heading "Marketers" [level=4] [ref=e167]
+                            - paragraph [ref=e168]: Launch and adapt content across every channel.
+                        - img "DAM and content teams" [ref=e172]
+            - generic [ref=e173]:
+                - generic [ref=e174]:
+                    - heading "Solutions for Every Use Case" [level=2] [ref=e175]
+                    - generic [ref=e177]:
+                        - group "1 / 6" [ref=e178]:
+                            - heading "WEB Performance" [level=4] [ref=e180] [cursor=pointer]
+                        - group "2 / 6" [ref=e181]:
+                            - heading "Omnichannel Content" [level=4] [ref=e183] [cursor=pointer]
+                        - group "3 / 6" [ref=e184]:
+                            - heading "Commerce experiences" [level=4] [ref=e186] [cursor=pointer]
+                        - group "4 / 6" [ref=e187]:
+                            - heading "media operations" [level=4] [ref=e189] [cursor=pointer]
+                        - group "5 / 6" [ref=e190]:
+                            - heading "Asset management" [level=4] [ref=e192] [cursor=pointer]
+                        - group "6 / 6" [ref=e193]:
+                            - heading "AI automation" [level=4] [ref=e195] [cursor=pointer]
+                - generic [ref=e197]:
+                    - group "1 / 6" [ref=e198]:
+                        - generic [ref=e202]:
+                            - generic [ref=e203]: High-performance web & app experiences.
+                            - text: Fast, responsive images and video optimized for every device and network, automatically.
+                    - group "2 / 6" [ref=e204]:
+                        - generic [ref=e208]:
+                            - generic [ref=e209]: Dynamic content for every channel.
+                            - text: Create once, adapt everywhere — real-time transformations for web, mobile, social, and beyond.
+                    - group "3 / 6" [ref=e210]:
+                        - generic [ref=e214]:
+                            - generic [ref=e215]: High-converting commerce experiences.
+                            - text: Rich, optimized product visuals that drive engagement and increase conversions.
+                    - group "4 / 6" [ref=e216]:
+                        - generic [ref=e220]:
+                            - generic [ref=e221]: Scalable media operations.
+                            - text: Automate tagging, moderation, approvals, and workflows at scale.
+                    - group "5 / 6" [ref=e222]:
+                        - generic [ref=e226]:
+                            - generic [ref=e227]: Centralized asset management.
+                            - text: Organize, search, and control all media with AI-powered metadata and enterprise-grade governance.
+                    - group "6 / 6" [ref=e228]:
+                        - generic [ref=e232]:
+                            - generic [ref=e233]: AI-powered media automation.
+                            - text: Generate, transform, and optimize media dynamically with AI and agents.
+        - generic [ref=e234]:
+            - generic [ref=e235]:
+                - heading "Connects To Your Entire Tech Stack" [level=2] [ref=e236]
+                - paragraph [ref=e237]: Prebuilt integrations, APIs, and MCP server support so any application, AI tool, LLM, or agent can connect to your Cloudinary media stack.
+                - link "Learn More" [ref=e238] [cursor=pointer]:
+                    - /url: https://cloudinary.com/integrations
+            - generic [ref=e239]:
+                - generic [ref=e241]:
+                    - generic [ref=e242]: Storyblok
+                    - generic [ref=e245]: Shutterstock
+                    - generic [ref=e248]: Cursor
+                    - generic [ref=e251]: Mobius
+                    - generic [ref=e254]: Intuiface
+                    - generic [ref=e257]: Mobiuslabs
+                    - generic [ref=e260]: Syndigo
+                    - generic [ref=e263]: Unsplash
+                    - generic [ref=e266]: Ziflow
+                    - generic [ref=e269]: Wrike
+                    - generic [ref=e272]: Movidmo
+                    - generic [ref=e275]: Codex
+                    - generic [ref=e278]: Zapier
+                    - generic [ref=e281]: Progress
+                    - generic [ref=e288]: Microsoft
+                - generic [ref=e292]:
+                    - generic [ref=e293]: WordPress
+                    - generic [ref=e296]: Uniform
+                    - generic [ref=e299]: Sanity
+                    - generic [ref=e302]: Salesforce
+                    - generic [ref=e305]: Netlify
+                    - generic [ref=e308]: Marketo
+                    - generic [ref=e311]: Make
+                    - generic [ref=e314]: Claude
+                    - generic [ref=e317]: Magnolia
+                    - generic [ref=e320]: iStock
+                    - generic [ref=e323]: Mailchimp
+                    - generic [ref=e326]: Hygraph
+                    - generic [ref=e329]: Hootsuite
+                    - generic [ref=e332]: Getty Images
+                    - generic [ref=e335]: Hubspot
+                    - generic [ref=e338]: n8n
+                    - generic [ref=e341]: Google
+                - generic [ref=e345]:
+                    - generic [ref=e346]: Figma
+                    - generic [ref=e349]: Creative Force
+                    - generic [ref=e352]: CoreMedia
+                    - generic [ref=e355]: Adobe
+                    - generic [ref=e358]: base44
+                    - generic [ref=e361]: Contentsquare
+                    - generic [ref=e364]: Contentstack
+                    - generic [ref=e367]: Contentful
+                    - generic [ref=e370]: CloudCannon
+                    - generic [ref=e373]: Comestri
+                    - generic [ref=e376]: Conscia
+                    - generic [ref=e379]: ButterCMS
+                    - generic [ref=e382]: Bluestone
+                    - generic [ref=e385]: AWS
+                    - generic [ref=e388]: Alttext.ai
+                    - generic [ref=e391]: Akeneo
+                    - generic [ref=e394]: Builder.io
+        - generic [ref=e398]:
+            - heading "Trusted at a Global Scale" [level=2] [ref=e399]
+            - generic [ref=e400]:
+                - generic [ref=e401]:
+                    - generic [ref=e402]: 80 billionassets under management
+                    - generic [ref=e403]: 3.9 milliondevelopers and counting
+                    - generic [ref=e404]: Thousandsof the world's leading brands — from fast-growing startups to global enterprises
+                - generic [ref=e405]:
+                    - generic [ref=e408]: Visionary in the Gartner® Magic Quadrant™ for DAM platforms
+                    - generic [ref=e410]: Leader in the IDC MarketScape for Worldwide Intelligent DAM
+                    - generic [ref=e412]: Featured in the Gartner® Market Guide™ for Video Platform Services
+                    - generic [ref=e414]: Leader in Globe for Enterprise Video
+            - generic [ref=e416]:
+                - generic [ref=e417]:
+                    - button [ref=e418] [cursor=pointer]:
+                        - img "Paul Smith" [ref=e419]
+                    - button [ref=e420] [cursor=pointer]:
+                        - img "Grubhub" [ref=e421]
+                    - button [ref=e422] [cursor=pointer]:
+                        - img "Marks & Spencer" [ref=e423]
+                - generic [ref=e424]:
+                    - button "Previous slide" [ref=e425] [cursor=pointer]
+                    - button "Next slide" [ref=e428] [cursor=pointer]
+                - generic [ref=e432]:
+                    - group "1 / 3" [ref=e433]:
+                        - generic [ref=e436]:
+                            - generic [ref=e438]:
+                                - generic [ref=e439]: +40% reduction
+                                - text: in asset management costs
+                            - generic [ref=e440]:
+                                - heading "How Paul Smith Tailored Its Global DAM for Modern Commerce" [level=5] [ref=e441]
+                                - link "LEARN MORE ->" [ref=e442] [cursor=pointer]:
+                                    - /url: https://cloudinary.com/customers/paul-smith
+                    - group "2 / 3" [ref=e444]:
+                        - generic [ref=e447]:
+                            - generic [ref=e449]:
+                                - generic [ref=e450]: 20% increase in conversions
+                                - text: due to high quality images
+                            - generic [ref=e451]:
+                                - heading "How Grubhub Delivers 400M Images Across Every Device" [level=5] [ref=e452]
+                                - link "LEARN MORE ->" [ref=e453] [cursor=pointer]:
+                                    - /url: https://cloudinary.com/customers/grubhub
+                    - group "3 / 3" [ref=e455]:
+                        - generic [ref=e458]:
+                            - generic [ref=e460]:
+                                - generic [ref=e461]: 0.5% more conversions
+                                - text: after unlocking video for the first time
+                            - generic [ref=e462]:
+                                - heading "Marks & Spencer Delivers Beautiful CX With Cloudinary" [level=5] [ref=e463]
+                                - link "LEARN MORE ->" [ref=e464] [cursor=pointer]:
+                                    - /url: https://cloudinary.com/customers/marks-and-spencer
+        - generic [ref=e467]:
+            - heading "Every Stage of the Visual Media Lifecycle, Connected" [level=2] [ref=e468]
+            - generic [ref=e469]:
+                - tablist "Visual media lifecycle stages" [ref=e471]:
+                    - listitem [ref=e472]:
+                        - tab "Ingest & Store" [ref=e473] [cursor=pointer]
+                    - listitem [ref=e477]:
+                        - tab "Moderate & Align" [ref=e478] [cursor=pointer]
+                    - listitem [ref=e482]:
+                        - tab "Manage & Govern" [ref=e483] [cursor=pointer]
+                    - listitem [ref=e487]:
+                        - tab "Enrich & Find" [ref=e488] [cursor=pointer]
+                    - listitem [ref=e492]:
+                        - tab "Transform & Generate" [selected] [ref=e493] [cursor=pointer]
+                    - listitem [ref=e497]:
+                        - tab "Optimize & Deliver" [ref=e498] [cursor=pointer]
+                    - listitem [ref=e502]:
+                        - tab "Automate & Orchestrate" [ref=e503] [cursor=pointer]
+                - generic [ref=e508]:
+                    - group "Ingest & Store":
+                        - generic:
+                            - generic: Centralize all visual media.
+                            - figure:
+                                - img "Visual media preview for Ingest and Store"
+                    - group "Moderate & Align":
+                        - generic:
+                            - generic: Ensure brand consistency and content safety at scale.
+                            - figure:
+                                - img "Visual media preview for Moderate and Align"
+                    - group "Manage & Govern":
+                        - generic:
+                            - generic: Organize, control, and protect assets.
+                            - figure:
+                                - img "Visual media preview for Manage and Govern"
+                    - group "Enrich & Find":
+                        - generic:
+                            - generic: Auto-tag and structure content for search and discovery.
+                            - figure:
+                                - img "Visual media preview for Enrich"
+                    - group "Transform & Generate" [ref=e509]:
+                        - generic [ref=e510]:
+                            - generic [ref=e511]: Edit and create media dynamically with APIs and AI.
+                            - figure:
+                                - img "Visual media preview for Transform and Generate"
+                    - group "Optimize & Deliver":
+                        - generic:
+                            - generic: Automatically serve the best version for every user.
+                            - figure:
+                                - img "Visual media preview for Optimize and Deliver"
+                    - group "Automate & Orchestrate":
+                        - generic:
+                            - generic: Trigger workflows and actions with AI agents.
+                            - figure:
+                                - img "Visual media preview for Automate and Orchestrate"
+        - generic [ref=e514]:
+            - heading "The Cloudinary Difference" [level=2] [ref=e516]
+            - generic [ref=e517]:
+                - generic [ref=e518]:
+                    - heading "Captivate and convert." [level=3] [ref=e520]
+                    - paragraph [ref=e521]: Image and video expertise means your team can create and deliver the most visually compelling experiences.
+                - generic [ref=e522]:
+                    - heading "Build faster. Stay ahead." [level=3] [ref=e524]
+                    - paragraph [ref=e525]: APIs at the core, modern UI, pre-built integrations, and agent-ready infrastructure ensure you get to market fast.
+        - generic [ref=e527]:
+            - heading "A Partner at Every Stage" [level=2] [ref=e528]
+            - paragraph [ref=e529]: Cloudinary customers trust us to deliver outcomes, not just technology.
+            - link "see more customer stories ->" [ref=e530] [cursor=pointer]:
+                - /url: https://cloudinary.com/customers
+            - group "1 / 1" [ref=e533]:
+                - generic [ref=e534]:
+                    - 'heading "Top-rated support: High customer satisfaction driven by responsive, expert teams." [level=3] [ref=e535]'
+                    - heading "“Cloudinary has been a great partner. They’ve really owned the whole process from start to finish, which has helped with many other projects in parallel…. They were responsive, flexible, and accommodating.”" [level=4] [ref=e538]
+        - generic [ref=e542]:
+            - heading "One Platform. Every Visual Experience." [level=2] [ref=e547]
+            - generic [ref=e548]:
+                - tablist [ref=e550]:
+                    - tab "Cloudinary Image" [ref=e551] [cursor=pointer]
+                    - generic [ref=e556]:
+                        - heading "The Perfect Image, Delivered Every Time" [level=3] [ref=e557]
+                        - paragraph [ref=e558]: Automated image transformations, GenAI editing, and optimized delivery for any device, channel, or use case.
+                        - paragraph [ref=e559]:
+                            - link "Learn More →" [ref=e560] [cursor=pointer]:
+                                - /url: https://cloudinary.com/products/image
+                    - tab "Cloudinary Video" [ref=e561] [cursor=pointer]
+                    - tab "Cloudinary AI" [ref=e565] [cursor=pointer]
+                    - tab "Cloudinary Assets" [ref=e569] [cursor=pointer]
+                    - tab "Cloudinary MediaFlows" [ref=e573] [cursor=pointer]
+                    - tab "Cloudinary Moderation" [ref=e577] [cursor=pointer]
+                - generic [ref=e581]:
+                    - tabpanel
+        - generic [ref=e586]:
+            - generic [ref=e587]:
+                - heading "Resources" [level=4] [ref=e588]
+                - generic [ref=e589]:
+                    - generic "Previous" [ref=e591]: ‹
+                    - generic "Next" [ref=e593]: ›
+            - generic [ref=e597]:
+                - link "Need-to-Know Guide to Scale Video Experiences Introducing faster customization, accessibility compliance, and high-definition live streaming." [ref=e602] [cursor=pointer]:
+                    - /url: https://lp.cloudinary.com/wod.lp.25q2-cloudinary-video-product-update-4687.html
+                    - generic [ref=e604]:
+                        - heading "Need-to-Know Guide to Scale Video Experiences" [level=4] [ref=e605]
+                        - paragraph [ref=e606]: Introducing faster customization, accessibility compliance, and high-definition live streaming.
+                - link "Modernizing the Visual Stack The business case for Adopting an ai-powered visual solution." [ref=e611] [cursor=pointer]:
+                    - /url: https://cloudinary-marketing-res.cloudinary.com/image/upload/v1760482205/cld-platform_planning-ebook.pdf
+                    - generic [ref=e613]:
+                        - heading "Modernizing the Visual Stack" [level=4] [ref=e614]
+                        - paragraph [ref=e615]: The business case for Adopting an ai-powered visual solution.
+                - link "Take the Work Out of Workflows Forrester found that customers can gain 203% ROI on an month payback." [ref=e620] [cursor=pointer]:
+                    - /url: https://lp.cloudinary.com/wnr.lp.cloudinary-mediaflows-take-the-work-out-of-workflows.html
+                    - generic [ref=e622]:
+                        - heading "Take the Work Out of Workflows" [level=4] [ref=e623]
+                        - paragraph [ref=e624]: Forrester found that customers can gain 203% ROI on an month payback.
+                - link "The Trends Reshaping Retail Learn more about the state of modern retail and what trends are driving priorities in..." [ref=e629] [cursor=pointer]:
+                    - /url: https://cloudinary.com/solutions/retail/survey
+                    - generic [ref=e631]:
+                        - heading "The Trends Reshaping Retail" [level=4] [ref=e632]
+                        - paragraph [ref=e633]: Learn more about the state of modern retail and what trends are driving priorities in...
+                - link "Heavy Images Are Costing You Sales In this guide, we’ll build a high-performance image orchestration pipeline for image delivery." [ref=e638] [cursor=pointer]:
+                    - /url: https://cloudinary.com/blog/heavy-images-are-costing-you-sales
+                    - generic [ref=e640]:
+                        - heading "Heavy Images Are Costing You Sales" [level=4] [ref=e641]
+                        - paragraph [ref=e642]: In this guide, we’ll build a high-performance image orchestration pipeline for image delivery.
+        - generic [ref=e647]:
+            - heading "Ready to start using Cloudinary?" [level=2] [ref=e649]
+            - generic [ref=e650]:
+                - paragraph [ref=e651]: Create stunning visual experiences in minutes.
+                - link "GET STARTED" [ref=e653] [cursor=pointer]:
+                    - /url: https://cloudinary.com/contact
+    - contentinfo [ref=e654]:
+        - generic [ref=e658]:
+            - link "Cloudinary Logo" [ref=e660] [cursor=pointer]:
+                - /url: /
+                - img "Cloudinary Logo" [ref=e661]
+            - navigation [ref=e680]:
+                - strong [ref=e681]: Products
+                - list [ref=e683]:
+                    - listitem [ref=e684]:
+                        - link "Platform" [ref=e685] [cursor=pointer]:
+                            - /url: /platform
+                    - listitem [ref=e686]:
+                        - link "Image" [ref=e687] [cursor=pointer]:
+                            - /url: /products/image
+                    - listitem [ref=e688]:
+                        - link "Video" [ref=e689] [cursor=pointer]:
+                            - /url: /products/video
+                    - listitem [ref=e690]:
+                        - link "DAM" [ref=e691] [cursor=pointer]:
+                            - /url: /products/digital_asset_management
+                    - listitem [ref=e692]:
+                        - link "Demos" [ref=e693] [cursor=pointer]:
+                            - /url: /demos
+                    - listitem [ref=e694]:
+                        - link "Pricing" [ref=e695] [cursor=pointer]:
+                            - /url: /pricing
+                    - listitem [ref=e696]:
+                        - link "FAQ" [ref=e697] [cursor=pointer]:
+                            - /url: /faq
+            - navigation [ref=e699]:
+                - strong [ref=e700]: Solutions
+                - list [ref=e702]:
+                    - listitem [ref=e703]:
+                        - link "E-commerce" [ref=e704] [cursor=pointer]:
+                            - /url: /solutions/ecommerce
+                    - listitem [ref=e705]:
+                        - link "Retail" [ref=e706] [cursor=pointer]:
+                            - /url: /solutions/retail
+                    - listitem [ref=e707]:
+                        - link "Media & Entertainment" [ref=e708] [cursor=pointer]:
+                            - /url: /solutions/industries/media_entertainment
+                    - listitem [ref=e709]:
+                        - link "Travel & Hospitality" [ref=e710] [cursor=pointer]:
+                            - /url: /solutions/industries/travel_hospitality
+                    - listitem [ref=e711]:
+                        - link "Non-Profits" [ref=e712] [cursor=pointer]:
+                            - /url: /solutions/industries/cloudinary-for-nonprofits
+                    - listitem [ref=e713]:
+                        - link "Our Customers" [ref=e714] [cursor=pointer]:
+                            - /url: /customers
+                    - listitem [ref=e715]:
+                        - link "Resource Library" [ref=e716] [cursor=pointer]:
+                            - /url: /resources
+            - navigation [ref=e718]:
+                - strong [ref=e719]: Developers
+                - list [ref=e721]:
+                    - listitem [ref=e722]:
+                        - link "Image API" [ref=e723] [cursor=pointer]:
+                            - /url: /image-api
+                    - listitem [ref=e724]:
+                        - link "Video API" [ref=e725] [cursor=pointer]:
+                            - /url: /video_api
+                    - listitem [ref=e726]:
+                        - link "Getting Started" [ref=e727] [cursor=pointer]:
+                            - /url: https://cloudinary.com/developers
+                    - listitem [ref=e728]:
+                        - link "Documentation" [ref=e729] [cursor=pointer]:
+                            - /url: /documentation
+                    - listitem [ref=e730]:
+                        - link "SDKs" [ref=e731] [cursor=pointer]:
+                            - /url: /documentation/cloudinary_sdks
+                    - listitem [ref=e732]:
+                        - link "Add-Ons" [ref=e733] [cursor=pointer]:
+                            - /url: /addons
+                    - listitem [ref=e734]:
+                        - link "Background Remover" [ref=e735] [cursor=pointer]:
+                            - /url: /background-remover
+            - navigation [ref=e737]:
+                - strong [ref=e738]: Company
+                - list [ref=e740]:
+                    - listitem [ref=e741]:
+                        - link "About Us" [ref=e742] [cursor=pointer]:
+                            - /url: /about
+                    - listitem [ref=e743]:
+                        - link "Customers" [ref=e744] [cursor=pointer]:
+                            - /url: /customers
+                    - listitem [ref=e745]:
+                        - link "Partners" [ref=e746] [cursor=pointer]:
+                            - /url: /partners
+                    - listitem [ref=e747]:
+                        - link "Events" [ref=e748] [cursor=pointer]:
+                            - /url: /events
+                    - listitem [ref=e749]:
+                        - link "Careers" [ref=e750] [cursor=pointer]:
+                            - /url: /careers
+                    - listitem [ref=e751]:
+                        - link "Newsroom" [ref=e752] [cursor=pointer]:
+                            - /url: /newsroom
+                    - listitem [ref=e753]:
+                        - link "Blog" [ref=e754] [cursor=pointer]:
+                            - /url: https://cloudinary.com/blog/
+                    - listitem [ref=e755]:
+                        - link "Labs" [ref=e756] [cursor=pointer]:
+                            - /url: https://cloudinary.com/labs
+                    - listitem [ref=e757]:
+                        - link "Trust" [ref=e758] [cursor=pointer]:
+                            - /url: /trust
+            - generic [ref=e759]:
+                - navigation [ref=e760]:
+                    - strong [ref=e761]: Contact Us
+                    - list [ref=e763]:
+                        - listitem [ref=e764]:
+                            - link "Technical Support" [ref=e765] [cursor=pointer]:
+                                - /url: https://support.cloudinary.com/hc/en-us
+                        - listitem [ref=e766]:
+                            - link "Contact Sales" [ref=e767] [cursor=pointer]:
+                                - /url: /contact
+                        - listitem [ref=e768]:
+                            - link "Education & Training" [ref=e769] [cursor=pointer]:
+                                - /url: https://training.cloudinary.com/
+                - navigation [ref=e770]:
+                    - list [ref=e772]:
+                        - listitem [ref=e773]:
+                            - link "Twitter page" [ref=e774] [cursor=pointer]:
+                                - /url: https://twitter.com/cloudinary
+                        - listitem [ref=e777]:
+                            - link "Linkedin page" [ref=e778] [cursor=pointer]:
+                                - /url: https://www.linkedin.com/company/cloudinary/
+                        - listitem [ref=e781]:
+                            - link "Facebook page" [ref=e782] [cursor=pointer]:
+                                - /url: https://www.facebook.com/Cloudinary
+                        - listitem [ref=e785]:
+                            - link "Instagram page" [ref=e786] [cursor=pointer]:
+                                - /url: https://www.instagram.com/cloudinarylife
+                        - listitem [ref=e789]:
+                            - link "Youtube page" [ref=e790] [cursor=pointer]:
+                                - /url: https://www.youtube.com/@Cloudinary
+            - list [ref=e797]:
+                - listitem [ref=e798]:
+                    - img "Institute of Quality & Control" [ref=e799]
+                - listitem [ref=e800]:
+                    - img "GDPR" [ref=e801]
+                - listitem [ref=e802]:
+                    - img "SOC" [ref=e803]
+        - generic [ref=e808]:
+            - list [ref=e809]:
+                - listitem [ref=e810]:
+                    - link "Terms of Use" [ref=e811] [cursor=pointer]:
+                        - /url: /tou
+                - listitem [ref=e812]:
+                    - link "Privacy Policy" [ref=e813] [cursor=pointer]:
+                        - /url: /privacy
+                - listitem [ref=e814]:
+                    - link "DMCA Notice" [ref=e815] [cursor=pointer]:
+                        - /url: /dmca
+            - paragraph [ref=e817]: © 2026 Cloudinary. All rights reserved.

@@ -1,0 +1,69 @@
+- generic [ref=e1]:
+    - banner:
+        - heading "Excalidraw" [level=1] [ref=e2]
+    - generic [active] [ref=e5]:
+        - generic:
+            - generic:
+                - generic: Your drawings are saved in your browser's storage.Browser storage can be cleared unexpectedly.Save your work to a file regularly to avoid losing it.
+                - generic:
+                    - button "Open Cmd+O" [ref=e6] [cursor=pointer]:
+                        - generic [ref=e10]: Open
+                        - generic [ref=e11]: Cmd+O
+                    - button "Help ?" [ref=e12] [cursor=pointer]:
+                        - generic [ref=e19]: Help
+                        - generic [ref=e20]: "?"
+                    - button "Live collaboration..." [ref=e21] [cursor=pointer]
+            - generic:
+                - generic:
+                    - button [ref=e35] [cursor=pointer]
+                    - region "Shapes":
+                        - generic [ref=e42]:
+                            - generic:
+                                - generic:
+                                    - text: To move canvas, hold
+                                    - generic: Scroll wheel
+                                    - text: or
+                                    - generic: Space
+                                    - text: while dragging, or use the hand tool
+                            - heading "Shapes" [level=2] [ref=e43]
+                            - generic [ref=e44]:
+                                - button "Keep selected tool active after drawing" [ref=e45] [cursor=pointer]
+                                - button "Hand (panning tool)" [ref=e54] [cursor=pointer]
+                                - button "Selection" [pressed] [ref=e63] [cursor=pointer]:
+                                    - generic [ref=e64]: "1"
+                                - button "Rectangle" [ref=e71] [cursor=pointer]:
+                                    - generic [ref=e72]: "2"
+                                - button "Diamond" [ref=e78] [cursor=pointer]:
+                                    - generic [ref=e79]: "3"
+                                - button "Ellipse" [ref=e85] [cursor=pointer]:
+                                    - generic [ref=e86]: "4"
+                                - button "Arrow" [ref=e92] [cursor=pointer]:
+                                    - generic [ref=e93]: "5"
+                                - button "Line" [ref=e100] [cursor=pointer]:
+                                    - generic [ref=e101]: "6"
+                                - button "Draw" [ref=e104] [cursor=pointer]:
+                                    - generic [ref=e105]: "7"
+                                - button "Text" [ref=e111] [cursor=pointer]:
+                                    - generic [ref=e112]: "8"
+                                - button "Insert image" [ref=e119] [cursor=pointer]:
+                                    - generic [ref=e120]: "9"
+                                - button "Eraser" [ref=e127] [cursor=pointer]:
+                                    - generic [ref=e128]: "0"
+                                - button "More tools" [ref=e137] [cursor=pointer]
+                    - generic:
+                        - button "Live collaboration..." [ref=e145] [cursor=pointer]
+                        - button "Library" [ref=e148] [cursor=pointer]
+            - contentinfo:
+                - region [ref=e156]:
+                    - heading "Canvas actions" [level=2] [ref=e157]
+                    - generic [ref=e159]:
+                        - button "Zoom out" [ref=e160] [cursor=pointer]
+                        - button "Reset zoom" [ref=e164] [cursor=pointer]: 100%
+                        - button "Zoom in" [ref=e165] [cursor=pointer]
+                    - generic [ref=e169]:
+                        - button "Undo" [disabled] [ref=e172]
+                        - button "Redo" [disabled] [ref=e178]
+                - link "Blog post on end-to-end encryption in Excalidraw" [ref=e183] [cursor=pointer]:
+                    - /url: https://plus.excalidraw.com/blog/end-to-end-encryption
+                - button "Help" [ref=e188] [cursor=pointer]
+        - generic [ref=e194]: Drawing canvas
