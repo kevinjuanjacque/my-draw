@@ -22,7 +22,7 @@ const createStorage = (): SupabaseStorage =>
   } as unknown as SupabaseStorage);
 
 describe("board read shares", () => {
-  test("publishes a snapshot and token for only the current board", async () => {
+  test("publishes a snapshot and creates a SPA-safe link for the current board", async () => {
     // Arrange
     const storage = createStorage();
 
@@ -37,13 +37,12 @@ describe("board read shares", () => {
     // Assert
     expect(storage.saveSnapshot).toHaveBeenCalledWith("board-a", snapshot);
     expect(storage.createReadShare).toHaveBeenCalledWith("board-a");
-    expect(link).toBe(
-      "https://app.example.com/board/board-a?share=token-for-board-a",
-    );
+    expect(link).toBe("https://app.example.com/?share=token-for-board-a");
+    expect(link).not.toContain("/board/");
     expect(link).not.toContain("room=");
   });
 
-  test("loads the snapshot returned for a valid read token", async () => {
+  test("loads the current board snapshot from a root SPA read-share link", async () => {
     // Arrange
     const storage = createStorage();
     vi.mocked(storage.loadSharedSnapshot).mockResolvedValue({
@@ -54,7 +53,12 @@ describe("board read shares", () => {
     });
 
     // Act
-    const result = await loadBoardReadShare(storage, "valid-token");
+    const readShareLink = createBoardReadShareLink(
+      "valid-token",
+      "https://app.example.com/board/board-a",
+    );
+    const token = getBoardReadShareToken(readShareLink);
+    const result = await loadBoardReadShare(storage, token ?? "", null);
 
     // Assert
     expect(result).toEqual({

@@ -464,7 +464,16 @@ const ExcalidrawWrapper = () => {
   );
 
   const [errorMessage, setErrorMessage] = useState("");
+  const [isAuthBoardDialogOpen, setIsAuthBoardDialogOpen] = useState(false);
   const isCollabDisabled = isRunningInIframe();
+  const openAuthBoardDialog = useCallback(
+    () => setIsAuthBoardDialogOpen(true),
+    [],
+  );
+  const closeAuthBoardDialog = useCallback(
+    () => setIsAuthBoardDialogOpen(false),
+    [],
+  );
 
   const { editorTheme, appTheme, setAppTheme } = useHandleAppTheme();
 
@@ -1102,16 +1111,6 @@ const ExcalidrawWrapper = () => {
             </div>
           );
         }}
-        renderTopLeftUI={() =>
-          !isBoardReadShare && supabaseClient && supabaseStorage ? (
-            <AuthBoardUI
-              client={supabaseClient}
-              storage={supabaseStorage}
-              getSnapshot={getBoardSnapshot}
-              onLoadSnapshot={loadBoardSnapshot}
-            />
-          ) : null
-        }
         onLinkOpen={(element, event) => {
           if (element.link && isElementLink(element.link)) {
             event.preventDefault();
@@ -1129,7 +1128,25 @@ const ExcalidrawWrapper = () => {
           isCollabEnabled={!isCollabDisabled}
           theme={appTheme}
           refresh={() => forceRefresh((prev) => !prev)}
+          onAuthBoardDialogOpen={
+            !isBoardReadShare && supabaseClient && supabaseStorage
+              ? openAuthBoardDialog
+              : undefined
+          }
         />
+        {!isBoardReadShare &&
+          supabaseClient &&
+          supabaseStorage &&
+          isAuthBoardDialogOpen && (
+            <AuthBoardUI
+              client={supabaseClient}
+              storage={supabaseStorage}
+              isOpen={isAuthBoardDialogOpen}
+              onClose={closeAuthBoardDialog}
+              getSnapshot={getBoardSnapshot}
+              onLoadSnapshot={loadBoardSnapshot}
+            />
+          )}
         <AppWelcomeScreen
           onCollabDialogOpen={onCollabDialogOpen}
           isCollabEnabled={!isCollabDisabled}

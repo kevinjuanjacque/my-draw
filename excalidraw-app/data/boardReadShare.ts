@@ -26,6 +26,8 @@ export const createBoardReadShareLink = (
   currentUrl: string,
 ): string => {
   const url = new URL(currentUrl);
+  // Read shares must use the SPA entry point: Vercel does not serve /board/:id.
+  url.pathname = "/";
   url.search = "";
   url.hash = "";
   url.searchParams.set("share", token);
@@ -62,8 +64,7 @@ export const loadBoardReadShare = async (
   if (
     !sharedSnapshot ||
     !hasElements(sharedSnapshot.snapshot) ||
-    (expectedBoardId !== undefined &&
-      sharedSnapshot.boardId !== expectedBoardId)
+    (expectedBoardId != null && sharedSnapshot.boardId !== expectedBoardId)
   ) {
     return { status: "unavailable" };
   }

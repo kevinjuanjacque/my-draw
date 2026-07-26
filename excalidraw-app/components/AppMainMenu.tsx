@@ -16,6 +16,7 @@ export const AppMainMenu: React.FC<{
   isCollabEnabled: boolean;
   theme: Theme | "system";
   refresh: () => void;
+  onAuthBoardDialogOpen?: () => void;
 }> = React.memo((props) => {
   return (
     <MainMenu>
@@ -33,6 +34,14 @@ export const AppMainMenu: React.FC<{
       <MainMenu.DefaultItems.SearchMenu />
       <MainMenu.DefaultItems.Help />
       <MainMenu.DefaultItems.ClearCanvas />
+      {props.onAuthBoardDialogOpen && (
+        <>
+          <MainMenu.Separator />
+          <MainMenu.Item onSelect={props.onAuthBoardDialogOpen}>
+            Cuenta y pizarras
+          </MainMenu.Item>
+        </>
+      )}
       <MainMenu.Separator />
       {isDevEnv() && (
         <MainMenu.Item
