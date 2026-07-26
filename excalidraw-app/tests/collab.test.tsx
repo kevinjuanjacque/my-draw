@@ -3,14 +3,25 @@ import {
   createRedoAction,
   createUndoAction,
 } from "@excalidraw/excalidraw/actions/actionHistory";
+import { copyTextToSystemClipboard } from "@excalidraw/excalidraw/clipboard";
 import { syncInvalidIndices } from "@excalidraw/element";
 import { API } from "@excalidraw/excalidraw/tests/helpers/api";
-import { act, render, waitFor } from "@excalidraw/excalidraw/tests/test-utils";
+import {
+  act,
+  fireEvent,
+  render,
+  screen,
+  waitFor,
+} from "@excalidraw/excalidraw/tests/test-utils";
 import { afterEach, vi } from "vitest";
 
 import { StoreIncrement } from "@excalidraw/element";
 
 import type { DurableIncrement, EphemeralIncrement } from "@excalidraw/element";
+
+import { appJotaiStore } from "../app-jotai";
+import { activeRoomLinkAtom } from "../collab/Collab";
+import { shareDialogStateAtom } from "../share/ShareDialog";
 
 import ExcalidrawApp from "../App";
 
@@ -92,8 +103,22 @@ vi.mock("../data/supabase", () => {
   };
 });
 
+vi.mock("@excalidraw/excalidraw/clipboard", async (importOriginal) => {
+  const clipboard = await importOriginal<
+    typeof import("@excalidraw/excalidraw/clipboard")
+  >();
+
+  return {
+    ...clipboard,
+    copyTextToSystemClipboard: vi.fn(),
+  };
+});
+
 afterEach(() => {
   window.history.replaceState({}, "", window.location.origin);
+  appJotaiStore.set(activeRoomLinkAtom, null);
+  appJotaiStore.set(shareDialogStateAtom, { isOpen: false });
+  vi.mocked(copyTextToSystemClipboard).mockReset();
   supabaseMocks.channel.subscribe.mockReset();
   supabaseMocks.channel.subscribe.mockImplementation(
     (callback: (status: string) => void) => {
@@ -113,6 +138,49 @@ afterEach(() => {
  * i.e. multiplayer history tests could be a good first candidate, as we could test both history stacks simultaneously.
  */
 describe("collaboration", () => {
+  test.each(["share", "collaborationOnly"] as const)(
+    "shows and copies the live room link after starting a session from %s",
+    async (type) => {
+      // Arrange
+      await render(<ExcalidrawApp />);
+      await act(() =>
+        appJotaiStore.set(shareDialogStateAtom, { isOpen: true, type }),
+      );
+
+      // Act
+      await act(async () =>
+        fireEvent.click(screen.getByRole("button", { name: "Start session" })),
+      );
+
+      // Assert
+      const linkInput = await waitFor(() => {
+        const input = screen
+          .getAllByRole("textbox")
+          .find(
+            (textbox): textbox is HTMLInputElement =>
+              textbox instanceof HTMLInputElement &&
+              textbox.value === window.location.href,
+          );
+
+        if (!input) {
+          throw new Error("The live room link was not displayed.");
+        }
+
+        return input;
+      });
+      expect(linkInput).toHaveValue(window.location.href);
+      expect(linkInput.value).toContain("#room=");
+      expect(
+        await screen.findByRole("img", { name: /qr code/i }),
+      ).toBeVisible();
+
+      await act(async () =>
+        fireEvent.click(screen.getByRole("button", { name: "Copy link" })),
+      );
+      expect(copyTextToSystemClipboard).toHaveBeenCalledWith(linkInput.value);
+    },
+  );
+
   it("announces a new room even when presence has not loaded peers yet", async () => {
     // Arrange
     await render(<ExcalidrawApp />);

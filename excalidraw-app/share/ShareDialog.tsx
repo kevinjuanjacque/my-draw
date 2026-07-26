@@ -290,9 +290,7 @@ const ShareDialogInner = (props: ShareDialogProps) => {
   return (
     <Dialog size="small" onCloseRequest={props.handleClose} title={false}>
       <div className="ShareDialog">
-        {props.type === "collaborationOnly" &&
-        props.collabAPI &&
-        activeRoomLink ? (
+        {props.collabAPI && activeRoomLink ? (
           <ActiveRoomDialog
             collabAPI={props.collabAPI}
             activeRoomLink={activeRoomLink}
