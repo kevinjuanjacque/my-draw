@@ -1,5 +1,39 @@
 @import "../packages/excalidraw/css/variables.module.scss";
 
+.supabase-configuration-error {
+  box-sizing: border-box;
+  display: grid;
+  min-height: 100%;
+  place-items: center;
+  padding: 1.5rem;
+  background: #ffffff;
+  color: #1b1b1f;
+  font-family: Arial, sans-serif;
+  user-select: text;
+
+  section {
+    max-width: 42rem;
+    padding: 2rem;
+    border: 1px solid #b3261e;
+    border-radius: 0.5rem;
+    background: #fff8f7;
+  }
+
+  h1 {
+    margin-top: 0;
+    font-size: 1.5rem;
+  }
+
+  p {
+    line-height: 1.5;
+  }
+
+  code {
+    color: #7f1d1d;
+    font-weight: 700;
+  }
+}
+
 .excalidraw {
   --color-primary-contrast-offset: #625ee0; // to offset Chubb illusion
 
